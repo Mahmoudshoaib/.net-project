@@ -1,0 +1,41 @@
+﻿@model final.Models.posts
+@{
+    ViewBag.Title = "addposts";
+}
+@section style{
+    <link href="~/Content/form.css" rel="stylesheet" />
+}
+<main>
+    <form method="post">
+        <h3>Add posts</h3>
+        <div>
+            <label for="title" class="form-label">post title</label>
+            @Html.TextBoxFor(n => n.title, new { @class = "form-control", @id = "title" })
+            <div>@Html.ValidationMessageFor(n => n.title, null, new { @class = "text-danger" })</div>
+        </div>
+        <div>
+            <label for="bref" class="form-label">bref</label>
+            @Html.TextAreaFor(n => n.bref, new { @class = "form-control", @id = "bref" })
+            <div>@Html.ValidationMessageFor(n => n.bref, null, new { @class = "text-danger" })</div>
+        </div>
+        <div>
+            <label for="desc" class="form-label">description</label>
+            @Html.TextAreaFor(n => n.desc, new { @class = "form-control", @id = "desc" })
+            <div>@Html.ValidationMessageFor(n => n.desc, null, new { @class = "text-danger" })</div>
+        </div>
+        <div>
+            <label for="photo" class="form-label">post photo</label>
+            <input type="file" class="form-control" name="photo" id="photo" />
+        </div>
+        <div>
+            <label for="cat" class="form-label">choose catagory</label>
+            @Html.DropDownListFor(n=>n.cat_id , (SelectList)ViewBag.catagories, new { @class = "form-control", @id = "cat" } )
+        </div>
+        <input type="submit" value="ADD" class="btn btn-primary" />
+    </form>
+</main>
+@section scripts{
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}
+

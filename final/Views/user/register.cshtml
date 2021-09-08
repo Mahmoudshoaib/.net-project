@@ -1,0 +1,148 @@
+﻿@model final.Models.user
+@{
+    ViewBag.Title = "register";
+}
+@section style{
+    <style>
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 2vw;
+            padding-bottom: 2vw;
+        }
+
+        form {
+            position: relative;
+            max-width: 600px;
+            width: 100%;
+            background-color: #fff;
+            padding: 16px;
+            border-radius: 16px;
+            box-shadow: 0 2px 4px #000;
+            overflow: hidden;
+        }
+
+            form::before,
+            form::after {
+                content: "";
+                position: absolute;
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                background-color: rgb(93 173 226 / 25%);
+            }
+
+            form::before {
+                top: -30px;
+                left: -50px;
+            }
+
+            form::after {
+                top: 50%;
+                left: 300px;
+                transform: translateY(-50%);
+            }
+
+        h3,
+        .form-control {
+            position: relative;
+            z-index: 2;
+        }
+
+        form > div {
+            margin: 5px auto;
+            width: 100%;
+        }
+
+        .form-control {
+            background-color: transparent;
+            height: 40px;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .form-label,
+        h4 {
+            font-size: 20px;
+            font-weight: 400;
+        }
+
+        .form-check-label {
+            font-size: 18px;
+            font-weight: 300;
+        }
+        h4:last-of-type {
+            text-align: center;
+        }
+        .gender {
+            display: flex;
+            justify-content: space-around;
+            align-items: center
+        }
+        input[type="submit"] {
+            margin: 10px auto;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            max-width: 200px;
+            width: 100%;
+            font-size: 20px;
+        }
+    </style>
+}
+<main>
+    <form method="POST" enctype="multipart/form-data">
+            <h3>REGISTERATION</h3>
+            <div>
+                <label for="name" class="form-label">Full Name</label>
+                @Html.TextBoxFor(n => n.Full_name, new { @class = "form-control", @id = "name" })
+                <div>@Html.ValidationMessageFor(n => n.Full_name, null, new { @class = "text-danger" })</div>
+            </div>
+            <div>
+                <label for="uname" class="form-label">User Name</label>
+                @Html.TextBoxFor(n => n.User_name, new { @class = "form-control", @id = "uname" })
+                <div>@Html.ValidationMessageFor(n => n.User_name, null, new { @class = "text-danger" })</div>
+            </div>
+            <div>
+                <label for="email" class="form-label">Email</label>
+                @Html.TextBoxFor(n => n.email, new { @class = "form-control", @id = "email" })
+                <div>@Html.ValidationMessageFor(n => n.email, null, new { @class = "text-danger" })</div>
+            </div>
+            <div>
+                <label for="pass" class="form-label">Password</label>
+                @Html.PasswordFor(n => n.password, new { @class = "form-control", @id = "pass" })
+                <div>@Html.ValidationMessageFor(n => n.password, null, new { @class = "text-danger" })</div>
+            </div>
+            <div>
+                <label for="con-pass" class="form-label">Confirm Password</label>
+                @Html.PasswordFor(n => n.confirm_password, new { @class = "form-control", @id = "con-pass" })
+                <div>@Html.ValidationMessageFor(n => n.confirm_password, null, new { @class = "text-danger" })</div>
+            </div>
+            <div>
+                <label for="age" class="form-label">Age</label>
+                @Html.TextBoxFor(n => n.age, new { @class = "form-control", @id = "age" })
+                <div>@Html.ValidationMessageFor(n => n.age, null, new { @class = "text-danger" })</div>
+            </div>
+            <div>
+                <label for="photo" class="form-label">Upload your photo</label>
+                <input type="file" class="form-control" name="photo" id="photo" />
+            </div>
+            <div class="gender">
+                <div class="form-check">
+                    <input type="radio" name="gender" id="male" value="male" class="form-check-input" />
+                    <label for="male" class="form-check-label">Male</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" name="gender" id="female" value="female" class="form-check-input" />
+                    <label for="female" class="form-check-label">Female</label>
+                </div>
+            </div>
+            <div class="text-danger" style="text-align: center; font-weight: 600">@ViewBag.message</div>
+            <input type="submit" value="Resgiter" class="btn btn-primary">
+    </form>
+</main>
+@section scripts{
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}

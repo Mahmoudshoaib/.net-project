@@ -1,0 +1,19 @@
+
+nav .nav-item {
+    padding: 10px;
+    transition: background .3s ease;
+}
+
+nav .nav-link,
+nav .nav-link:hover,
+nav .nav-link:focus {
+    color: #fff;
+    text-decoration: none;
+}
+
+nav .nav-item:hover {
+    background-color: #737981;
+}
+
+
+

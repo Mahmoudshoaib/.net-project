@@ -1,0 +1,151 @@
+﻿@{
+    List<final.Models.catalog> cat = ViewBag.cate;
+    }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+<link href="~/Content/Site.css" rel="stylesheet" />
+<style>
+    body {
+        padding-bottom: 0 !important;
+        background: #FBFCFC;
+    }
+    legend {
+        font-weight: 600;
+        border: none;
+        width: fit-content;
+        }
+    .navbar-inverse .navbar-brand,
+    .navbar-inverse .navbar-nav > li > a,
+    .navbar-inverse .navbar-nav > li:last-of-type {
+        color: #fff;
+        transition: background .3s ease;
+    }
+    .navbar-inverse .navbar-nav > li:last-of-type {
+        padding: 10px 15px;
+        line-height: 30px;
+        cursor: pointer;
+    }
+        .navbar-inverse .navbar-nav > li:last-of-type:hover,
+        .navbar-inverse .navbar-nav > li > a:hover {
+            background-color: #85C1E9;
+        }
+        .navbar-inverse,
+        footer {
+            background-color: #3498DB;
+            border-color: #3498DB;
+        }
+        footer {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            z-index: -1;
+            width: 100%;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items:center;
+        }
+            footer p {
+                text-align: center;
+                color: #fff;
+                margin: 0;
+            }
+            ul.navbar-nav {
+                font-size: 18px;
+                float: right;
+            }
+    .form-control {
+        margin: 0 auto;
+    }
+    .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+    .closebtn:hover {
+        text-decoration: none;
+    }
+    aside {
+        padding-top: 40px;
+        position: fixed;
+        height: 100%;
+        z-index: 2;
+        width: 0;
+        transition: .5s;
+        background-color: #e0e0e0;
+        overflow-y: scroll;
+    }
+
+    #links {
+        display: none;
+    }
+</style>
+
+    @RenderSection("style", false)
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse ">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Add Posts", "addposts", "posts")</li>
+                    <li>@Html.ActionLink("Register", "register", "user")</li>
+                    <li>@Html.ActionLink("Login", "login", "user")</li>
+                    <li onclick="openNav()">Catagories</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <aside id="sidebar">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <div class="list-group" id="links">
+                @foreach (var item in cat)
+                {
+                    <a href="#" class="list-group-item">@item.name</a>
+                }
+            </div>
+    </aside>
+    <div class="container body-content">
+        @RenderBody()
+        
+    </div>
+    <footer>
+        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+<script>
+    function openNav() {
+        document.getElementById("sidebar").style.width = "250px";
+        document.getElementById("links").style.display = "block";
+
+    }
+
+    function closeNav() {
+        document.getElementById("sidebar").style.width = "0";
+        document.getElementById("links").style.display = "none";
+    }
+</script>
+</body>
+</html>
